@@ -44,9 +44,9 @@ def main():
     dec = decrypt(d, N, enc)
 
     print(f"Message: {message}")
-    print(f"e: {e}")
+    print(f"e is the public key: {e}")
     print(f"d is the private key: {d}")
-    print(f"N: {N}")
+    print(f"N is a public parameter: {N}")
     print(f"enc: {enc}")
     print(f"dec: {dec}")
   
