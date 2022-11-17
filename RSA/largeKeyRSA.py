@@ -48,11 +48,15 @@ def isPrime(n):
 
 
 def generateKeys(keysize=1024):
-    e = d = N = 0.0
+    e = d = N = 0
     # get prime numbers p and q
     p = generateLargePrime(keysize)
     q = generateLargePrime(keysize)
 
+    #check the prime values:
+    print(f"p is: {p}")
+    print(f"q is: {q}")
+    
     N = p * q
 
     phiN = (p-1) * (q-1)
@@ -69,6 +73,8 @@ def generateKeys(keysize=1024):
     #calculate d (PRIVATE KEY)
     #d is the modular inverse of e with respect to phiN
     # e * d (mod(phiN)) == 1
+
+    return e, d, N
 
 
 
@@ -120,12 +126,16 @@ def decrypt(e, N, cipher):
     return msg
 
 def main():
+    message = "A test message to see if this script works or is a dud..."
+    keysize = 32
+
+    e, d, N = generateKeys(keysize)
 
     enc = encrypt(e, N, message)
     dec = decrypt(d, N, enc)
 
     print(f"Message: {message}")
-    print(f"e: {e}")
+    print(f"e is the public key: {e}")
     print(f"d is the private key: {d}")
     print(f"N: {N}")
     print(f"enc: {enc}")
